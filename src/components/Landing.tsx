@@ -1,11 +1,12 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useState } from "react";
 import "./styles/Landing.css";
-import { config } from "../config";
+import { config } from "../data/portfolio";
 
 const Landing = ({ children }: PropsWithChildren) => {
   const nameParts = config.developer.fullName.split(" ");
   const firstName = nameParts[0] || config.developer.name;
   const lastName = nameParts.slice(1).join(" ") || "";
+  const [photoLoaded, setPhotoLoaded] = useState(true);
 
   return (
     <>
@@ -23,21 +24,24 @@ const Landing = ({ children }: PropsWithChildren) => {
           <div className="landing-info">
             <h3>An</h3>
             <h2 className="landing-info-h2">
-              <div className="landing-h2-1">AI Engineer</div>
+              <div className="landing-h2-1">{config.developer.roles[0]}</div>
             </h2>
             <h2>
-              <div className="landing-h2-info">Full-Stack Developer</div>
+              <div className="landing-h2-info">{config.developer.roles[1]}</div>
             </h2>
           </div>
           {/* Mobile photo - shows only on mobile when 3D character is hidden */}
           <div className="mobile-photo">
-            <img
-              src="/images/mypicnbg.png"
-              alt="Redoyanul Haque"
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-            />
+            {photoLoaded && (
+              <img
+                src={config.assets.profilePhoto}
+                alt={config.developer.fullName}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                onError={() => setPhotoLoaded(false)}
+              />
+            )}
           </div>
         </div>
         {children}

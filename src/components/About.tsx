@@ -1,5 +1,5 @@
 import "./styles/About.css";
-import { config } from "../config";
+import { config } from "../data/portfolio";
 
 const About = () => {
   return (

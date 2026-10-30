@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { config } from "../config";
+import { config } from "../data/portfolio";
 import "./MyWorks.css";
 
 const MyWorks = () => {

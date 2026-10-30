@@ -1,14 +1,17 @@
 import {
   FaGithub,
-  FaInstagram,
   FaLinkedinIn,
-  FaXTwitter,
 } from "react-icons/fa6";
 import "./styles/SocialIcons.css";
 import { TbNotes } from "react-icons/tb";
 import { useEffect } from "react";
 import HoverLinks from "./HoverLinks";
-import { config } from "../config";
+import { config } from "../data/portfolio";
+
+const SOCIAL_ICONS: Record<string, React.ComponentType> = {
+  Github: FaGithub,
+  Linkedin: FaLinkedinIn,
+};
 
 const SocialIcons = () => {
   useEffect(() => {
@@ -60,28 +63,18 @@ const SocialIcons = () => {
   return (
     <div className="icons-section">
       <div className="social-icons" data-cursor="icons" id="social">
-        <span>
-          <a href={config.contact.github} target="_blank" rel="noopener noreferrer">
-            <FaGithub />
-          </a>
-        </span>
-        <span>
-          <a href={config.contact.linkedin} target="_blank" rel="noopener noreferrer">
-            <FaLinkedinIn />
-          </a>
-        </span>
-        <span>
-          <a href={config.contact.twitter} target="_blank" rel="noopener noreferrer">
-            <FaXTwitter />
-          </a>
-        </span>
-        <span>
-          <a href={config.contact.instagram} target="_blank" rel="noopener noreferrer">
-            <FaInstagram />
-          </a>
-        </span>
+        {config.contact.socials.map((social) => {
+          const Icon = SOCIAL_ICONS[social.name];
+          return (
+            <span key={social.name}>
+              <a href={social.url} target="_blank" rel="noopener noreferrer">
+                {Icon && <Icon />}
+              </a>
+            </span>
+          );
+        })}
       </div>
-      <a className="resume-button" href="#">
+      <a className="resume-button" href={config.assets.resumeUrl}>
         <HoverLinks text="RESUME" />
         <span>
           <TbNotes />

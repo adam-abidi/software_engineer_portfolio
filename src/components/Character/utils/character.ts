@@ -14,8 +14,9 @@ const setCharacter = (
   loader.setDRACOLoader(dracoLoader);
 
   const loadCharacter = () => {
-    return new Promise<GLTF | null>(async (resolve, reject) => {
-      try {
+    return new Promise<GLTF | null>((resolve, reject) => {
+      (async () => {
+        try {
         const encryptedBlob = await decryptFile(
           "/models/character.enc",
           "Character3D#@"
@@ -28,9 +29,9 @@ const setCharacter = (
           async (gltf) => {
             character = gltf.scene;
             await renderer.compileAsync(character, camera, scene);
-            character.traverse((child: any) => {
-              if (child.isMesh) {
-                const mesh = child as THREE.Mesh;
+            character.traverse((child: THREE.Object3D) => {
+              const mesh = child as THREE.Mesh;
+              if (mesh.isMesh) {
                 child.castShadow = false;
                 child.receiveShadow = false;
                 mesh.frustumCulled = true;
@@ -56,6 +57,7 @@ const setCharacter = (
         reject(err);
         console.error(err);
       }
+      })();
     });
   };
 

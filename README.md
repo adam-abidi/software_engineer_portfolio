@@ -1,99 +1,66 @@
-# 🚀 3D Developer Portfolio Website (React + TypeScript + Three.js)
+# Adam Abidi — 3D Developer Portfolio
 
-[![3D portfolio preview (click to watch video)](./Screenshot_2026-04-08_22-10-00.png)](./video.mp4)
+A modern, high-performance **3D developer portfolio website** built with **React**, **TypeScript**, **Three.js**, **GSAP**, and **WebGL**, with an AI chat persona and a chess page.
 
-A modern, high-performance **3D developer portfolio website** built with **React**, **TypeScript**, **Three.js**, **GSAP**, and **WebGL**.
-
-If you’re a developer looking for a **portfolio template** that feels premium, interactive, and memorable—this repo is for you.
-
-> Live preview: https://www.redoyanulhaque.me/
-
----
-
-## ✨ Highlights
+## Features
 
 - **3D / WebGL experience** powered by **Three.js**
 - Smooth animations with **GSAP**
 - Modern **React + TypeScript** codebase
+- AI chat assistant (serverless, Groq API) on the `/play` page
+- Playable chess against a WASM engine
 - Fast, responsive UI (desktop + mobile)
-- Designed for developers, engineers, programmers, and creators
 
----
-
-## 🧰 Tech Stack
-
-- **React**
-- **TypeScript**
-- **Three.js / WebGL**
-- **GSAP**
-- **HTML / CSS / JavaScript**
-
----
-
-## 🚀 Getting Started
-
-### 1) Clone
-
-```bash
-git clone https://github.com/red1-for-hek/portfolio-website.git
-cd portfolio-website
-```
-
-### 2) Install
+## Getting Started
 
 ```bash
 npm install
-```
-
-### 3) Run locally
-
-```bash
 npm run dev
 ```
 
-### 4) Build
+Build for production:
 
 ```bash
 npm run build
 ```
 
----
+## Environment variables
 
-## 🧩 Customize (Quick Guide)
+The AI chat on `/play` requires a Groq API key (server-side only, never exposed to the browser):
 
-Typical things you’ll want to update:
+1. Copy `.env.example` to `.env`
+2. Set `GROQ_API_KEY` to your key from https://console.groq.com/keys
 
-- **Your name + hero section text**
-- **Projects list**
-- **Social links** (GitHub, LinkedIn, email)
-- **SEO meta title/description**
+On Vercel, add the same `GROQ_API_KEY` environment variable in the project settings.
 
----
+## Customization
 
-## ⭐ Support
+All personal content (name, bio, experience, projects, skills, tech stack, social links, asset paths) lives in a single typed file:
 
-If you found this useful:
+```
+src/data/portfolio.ts
+```
 
-- Please **star** the repository (it helps a lot)
-- Share it with a friend who needs a portfolio template
-- Sponsor via the **Sponsor** button on GitHub (if available in your region)
+## Assets to provide
 
----
+| File | Purpose | Suggested format |
+|---|---|---|
+| `public/images/adam-profile.png` | Profile photo (mobile hero + chess opponent avatar) | PNG, portrait, transparent background, ~600×600 |
+| `public/Adam_Abidi_CV.pdf` | CV download (RESUME button) | PDF |
+| `public/og-image.png` | Open Graph / Twitter card image | PNG, 1200×630 |
+| `public/favicon.svg` | Favicon (currently an "AA" placeholder) | SVG, 64×64 |
 
-## 🤝 Connect
+## Deployment (Vercel)
 
-- LinkedIn: https://www.linkedin.com/in/red1-for-hek/
+1. Push this repository to your GitHub account
+2. Import it on [vercel.com](https://vercel.com) (framework preset: Vite)
+3. Add the `GROQ_API_KEY` environment variable
+4. Deploy
 
----
+## Credits
 
-## 🏷️ Recommended GitHub Topics (add in repo settings)
+- Design and 3D scene based on the open-source template by [Redoyanul Haque](https://github.com/red1-for-hek) (MIT License)
 
-Add these topics to improve GitHub search visibility:
-
-`portfolio` `developer-portfolio` `portfolio-website` `portfolio-template` `3d-portfolio` `react` `typescript` `threejs` `webgl` `gsap` `frontend` `vite`
-
----
-
-## 🪪 License
+## License
 
 This project is open source and available under the **MIT License**. See [LICENSE](LICENSE).
